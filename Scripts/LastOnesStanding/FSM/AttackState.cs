@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class AttackState : FSMBase
 {
@@ -20,6 +21,7 @@ public class AttackState : FSMBase
 
     public override Type StateUpdate()
     {
+        Debug.Log("Attack state");
         return null;
     }
 }

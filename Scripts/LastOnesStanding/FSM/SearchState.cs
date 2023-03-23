@@ -21,11 +21,12 @@ public class SearchState : FSMBase
 
     public override Type StateUpdate()
     {
-        if (Vector3.Distance(ourTank.transform.position, ourTank.targetTankPosition.transform.position) > 1f) return typeof(AttackState);
-        else
+        if (ourTank.targetTank == null)
         {
             ourTank.SearchingFor();
             return null;
         }
+        else if (ourTank.targetTankDistance < 20f && ourTank.targetTankDistance != -1f) return typeof(AttackState);
+        else return null;
     }
 }

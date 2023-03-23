@@ -10,7 +10,8 @@ public class SmartTank : AITank
     public Dictionary<GameObject, float> consumablesFound = new Dictionary<GameObject, float>();
     public Dictionary<GameObject, float> basesFound = new Dictionary<GameObject, float>();
 
-    public GameObject targetTankPosition;
+    public GameObject targetTank = null;
+    public float targetTankDistance = -1f;
     public GameObject consumablePosition;
     public GameObject basePosition;
 
@@ -48,6 +49,18 @@ public class SmartTank : AITank
         targetTanksFound = GetAllTargetTanksFound;
         consumablesFound = GetAllConsumablesFound;
         basesFound = GetAllBasesFound;
+
+        if (targetTanksFound.Count > 0)
+        {
+            targetTank = targetTanksFound.First().Key;
+            targetTankDistance = targetTanksFound.First().Value;
+            Debug.Log(targetTankDistance);
+        }
+        else
+        {
+            targetTank = null;
+            targetTankDistance = -1;
+        }
     }
 
     /*******************************************************************************************************       
@@ -60,7 +73,8 @@ public class SmartTank : AITank
 
     public void SearchingFor()
     {
-        targetTankPosition = null;
+        Debug.Log("Search function");
+        targetTank = null;
         consumablePosition = null;
         basePosition = null;
         FollowPathToRandomPoint(1f);

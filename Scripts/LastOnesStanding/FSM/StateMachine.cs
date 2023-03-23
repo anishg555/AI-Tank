@@ -21,7 +21,7 @@ public class StateMachine : MonoBehaviour
     }
 
     // Update is called once per frame
-    void UpdateState()
+    void Update()
     {
         if (CurrentState == null) currentState = states.Values.First();
         else { 
